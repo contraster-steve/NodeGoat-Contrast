@@ -1,5 +1,5 @@
 api: 
   url: https://apptwo.contrastsecurity.com/Contrast
-  api_key: 8P06mW4L6quvhK6gqXryFeZ9k5Ruyvnt
-  service_key: 369TEAZ0AHSPIZU7
-  user_name: agent_f7602ec5-41d9-4e32-87d1-71b8ebd183c9@SteveSmithOrganization
+  api_key: $API_KEY
+  service_key: $SERVICE_KEY
+  user_name: $USER_NAME
