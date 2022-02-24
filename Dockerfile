@@ -1,6 +1,6 @@
 FROM node:12-alpine
 
-RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-headers python3 pip3
+RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-headers python3 py3-pip
 
 ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
