@@ -2,7 +2,7 @@ FROM node:12-alpine
 ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
-RUN npm install @contrast/agent --no-optional
+RUN npm install @contrast/agent 
 COPY node-contrast*.tgz $WORKDIR
 COPY contrast_security.yaml $WORKDIR
 
