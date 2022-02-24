@@ -1,4 +1,7 @@
 FROM node:12-alpine
+
+RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-headers python3 pip3
+
 ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
