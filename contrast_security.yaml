@@ -1,5 +1,0 @@
-api: 
-  url: https://apptwo.contrastsecurity.com/Contrast
-  api_key: $API_KEY
-  service_key: $SERVICE_KEY
-  user_name: $USER_NAME
