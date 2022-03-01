@@ -6,7 +6,7 @@ ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 
-RUN npm install @contrast/agent 
+RUN npm install -g @contrast/agent 
 RUN npm install --production --no-cache
 COPY contrast_security.yaml $WORKDIR
 
