@@ -5,7 +5,7 @@ WORKDIR nodegoat/
 RUN npm install --production --no-cache
 
 FROM node:16-alpine
-WORKDIR /nodegoat
+WORKDIR nodegoat/
 ENV USER node
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
