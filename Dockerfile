@@ -1,5 +1,5 @@
 FROM node:16 as installer
-COPY . /nodegoat
+COPY *.* /nodegoat
 RUN ls -la
 WORKDIR /nodegoat
 RUN npm install --production --no-cache
