@@ -3,7 +3,7 @@ ENV WORKDIR /usr/src/app/dev/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 
-RUN npm install --production --no-cache && npm install -g @contrast/node-contrast
+RUN npm install --production --no-cache && npm install -g @contrast/agent
 
 FROM node:12-alpine
 ENV USER node
