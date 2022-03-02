@@ -4,7 +4,7 @@ services:
   nodegoat_dev_web:
     build: .
     volumes:
-      - ./contrast_security.yaml
+      - ./contrast_security.yaml:./contrast_security.yaml
     environment:
       NODE_ENV:
       MONGODB_URI: mongodb://mongo:27017/nodegoat
