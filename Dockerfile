@@ -6,9 +6,6 @@ COPY package*.json $WORKDIR
 RUN npm cache verify
 RUN npm install --production --no-cache & 
 RUN npm install @contrast/agent &
-RUN npm list
-RUN pwd
-RUN ls -la
 
 FROM node:12-alpine
 ENV USER node
@@ -23,3 +20,4 @@ COPY --chown=node . $WORKDIR
 #RUN chown -R $USER:$USER /home/$USER && chmod -R g-s,o-rx /home/$USER && chmod -R o-wrx $WORKDIR
 # Then all further actions including running the containers should be done under non-root user.
 USER $USER
+EXPOSE 4000
