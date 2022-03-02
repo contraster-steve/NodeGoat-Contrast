@@ -3,7 +3,7 @@ ENV WORKDIR /usr/src/app/dev/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
-RUN ls -la /root/node_modules
+RUN ls -la /root/
 
 FROM node:16-alpine
 ENV USER node
