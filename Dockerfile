@@ -3,7 +3,7 @@ ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 RUN npm install --production --no-cache && npm install -g @contrast/agent
-COPY --from=0 /usr/src/app/node_modules /home/node/app/node_modules
+COPY /usr/src/app/node_modules /home/node/app/node_modules
 RUN pwd
 RUN ls -la 
 
