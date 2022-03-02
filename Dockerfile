@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:12-alpine as build
 
 RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-headers python3 py3-pip
 
