@@ -3,6 +3,7 @@ ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 RUN npm install --production --no-cache && npm install -g @contrast/agent
+COPY --from=0 /usr/src/app/node_modules /home/node/app/node_modules
 RUN pwd
 RUN ls -la 
 
@@ -11,8 +12,7 @@ ENV USER node
 ENV WORKDIR /home/$USER/app
 WORKDIR $WORKDIR
 RUN pwd
-RUN ls -la /usr/src/app
-COPY --from=0 /usr/src/app/node_modules /home/node/app/node_modules
+RUN ls -la
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
 # In production environment uncomment the next line
