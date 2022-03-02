@@ -3,9 +3,7 @@ COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 
-FROM node:16-alpine
 USER node
-WORKDIR /app/nodegoat
 RUN ls -la
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
