@@ -9,7 +9,7 @@ services:
       NODE_ENV:
       MONGODB_URI: mongodb://mongo:27017/nodegoat
     container_name: NodeGoat-Contrast  
-    command: sh -c "until nc -z -w 2 mongo 27017 && echo 'mongo is ready for connections' && node artifacts/db-reset.js && node ./node_modules/node_contrast server.js; do sleep 2; done"
+    command: sh -c "until nc -z -w 2 mongo 27017 && echo 'mongo is ready for connections' && node artifacts/db-reset.js && node /usr/src/app/dev/node_modules/node_contrast server.js; do sleep 2; done"
     ports:
       - "4000:4000"
 
