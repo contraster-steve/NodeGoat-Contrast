@@ -10,6 +10,8 @@ FROM node:12-alpine
 ENV USER node
 ENV WORKDIR /home/$USER/app
 WORKDIR $WORKDIR
+RUN pwd
+RUN ls -la
 COPY --from=0 /usr/src/app/node_modules /home/node/app/node_modules
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
