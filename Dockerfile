@@ -4,8 +4,8 @@ WORKDIR /app/nodegoat
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 
 FROM node:16-alpine
-ENV USER node
-ENV WORKDIR /app/nodegoat
+USER node
+WORKDIR /app/nodegoat
 WORKDIR $WORKDIR
 RUN ls -la
 RUN chown $USER:$USER $WORKDIR
