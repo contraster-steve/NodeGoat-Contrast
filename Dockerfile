@@ -1,7 +1,5 @@
 FROM node:16-alpine as installer
-ENV WORKDIR /app/nodegoat
-WORKDIR $WORKDIR
-COPY package*.json $WORKDIR
+COPY package*.json /app/nodegoat/
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 RUN pwd
 RUN ls -la
@@ -9,7 +7,7 @@ RUN ls -la /root/
 
 FROM node:16-alpine
 ENV USER node
-ENV WORKDIR /app/nodegoat
+ENV WORKDIR /app/nodegoat/
 WORKDIR $WORKDIR
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
