@@ -6,7 +6,6 @@ RUN npm install --production --no-cache && npm install @contrast/agent --no-opti
 FROM node:16-alpine
 USER node
 WORKDIR /app/nodegoat
-WORKDIR $WORKDIR
 RUN ls -la
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
