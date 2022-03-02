@@ -3,7 +3,7 @@ COPY *.* nodegoat/
 RUN ls -la nodegoat/
 WORKDIR nodegoat/
 RUN npm install --production --no-cache
-RUN npx contrast-transpile ./server.js
+RUN npx contrast-transpile server.js
 
 FROM node:16-alpine
 WORKDIR /nodegoat
