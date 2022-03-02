@@ -2,7 +2,6 @@ FROM node:16-alpine
 ENV WORKDIR /usr/src/app/dev/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
-COPY node-contrast*.tgz $WORKDIR
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 
 FROM node:16-alpine
