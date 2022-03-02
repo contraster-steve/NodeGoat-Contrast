@@ -1,7 +1,7 @@
 FROM node:16-alpine as installer
-COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
+COPY . /app/nodegoat
 
 FROM node:16-alpine
 WORKDIR /app/nodegoat
