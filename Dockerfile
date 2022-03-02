@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16-alpine as installer
 ENV WORKDIR /usr/src/app/dev/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
