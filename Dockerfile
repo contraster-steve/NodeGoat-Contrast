@@ -10,7 +10,7 @@ FROM node:12-alpine
 ENV USER node
 ENV WORKDIR /home/$USER/app/dev/
 WORKDIR $WORKDIR
-COPY --from=0 /usr/src/app/dev/node_modules node_modules
+COPY --from=0 /usr/src/app/dev/node_modules/ node_modules
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
 # In production environment uncomment the next line
