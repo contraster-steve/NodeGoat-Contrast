@@ -9,7 +9,7 @@ RUN ls -la /root/
 
 FROM node:16-alpine
 ENV USER node
-ENV WORKDIR /app/nodegoat/
+ENV WORKDIR /app/nodegoat
 WORKDIR $WORKDIR
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
