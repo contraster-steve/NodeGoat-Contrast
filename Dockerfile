@@ -5,7 +5,6 @@ RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-h
 ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
-COPY node-contrast*.tgz $WORKDIR
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 RUN npm install --production --no-cache
 
