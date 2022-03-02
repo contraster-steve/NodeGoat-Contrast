@@ -10,10 +10,7 @@ RUN npm install @contrast/agent --no-optional
 RUN npm install --production --no-cache
 COPY contrast_security.yaml $WORKDIR
 
-FROM node:12-alpine
 ENV USER node
-ENV WORKDIR /home/$USER/app
-WORKDIR $WORKDIR
 COPY --from=0 /usr/src/app/node_modules node_modules
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
