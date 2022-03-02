@@ -4,8 +4,6 @@ WORKDIR /app/nodegoat
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 
 USER node
-RUN ls -la
-RUN chown node:node /app/nodegoat
 COPY --chown=node . /app/nodegoat
 # In production environment uncomment the next line
 #RUN chown -R $USER:$USER /home/$USER && chmod -R g-s,o-rx /home/$USER && chmod -R o-wrx $WORKDIR
