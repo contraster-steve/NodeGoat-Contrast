@@ -22,4 +22,4 @@ COPY --chown=node . $WORKDIR
 # Then all further actions including running the containers should be done under non-root user.
 USER $USER
 EXPOSE 4000
-CMD [“node”, “-r”, “@contrast/agent”, “server.js”]
+CMD [“node”, “-r”, “@contrast/agent”, “server”]
