@@ -3,7 +3,7 @@ ENV WORKDIR /usr/src/app/dev/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 
-RUN npm cache clean
+RUN npm cache verify
 RUN npm install --production --no-cache & 
 RUN npm install @contrast/agent &
 RUN npm list
