@@ -13,3 +13,4 @@ COPY --from=installer --chown=nodegoat /app/nodegoat .
 # Then all further actions including running the containers should be done under non-root user.
 USER nodegoat
 EXPOSE 4000
+CMD ["npm", "start"]
