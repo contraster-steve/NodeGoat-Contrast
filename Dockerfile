@@ -5,8 +5,8 @@ RUN npm install --production --no-cache && npm install @contrast/agent --no-opti
 
 USER node
 RUN ls -la
-RUN chown $USER:$USER $WORKDIR
-COPY --chown=node . $WORKDIR
+RUN chown node:node /app/nodegoat
+COPY --chown=node . /app/nodegoat
 # In production environment uncomment the next line
 #RUN chown -R $USER:$USER /home/$USER && chmod -R g-s,o-rx /home/$USER && chmod -R o-wrx $WORKDIR
 # Then all further actions including running the containers should be done under non-root user.
