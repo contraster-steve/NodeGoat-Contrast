@@ -1,17 +1,16 @@
-FROM node:12-alpine as build
-
-RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-headers python3 py3-pip
-
-ENV WORKDIR /usr/src/app/
+FROM node:12-alpine
+ENV WORKDIR /usr/src/app/dev/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
-RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
+COPY node-contrast*.tgz $WORKDIR
+RUN npm install --production --no-cache && npm install node-contrast*.tgz
 RUN npm install --production --no-cache
 
+FROM node:12-alpine
 ENV USER node
 ENV WORKDIR /home/$USER/app/dev/
 WORKDIR $WORKDIR
-COPY --from=0 /usr/src/app/node_modules node_modules
+COPY --from=0 /usr/src/app/dev/node_modules node_modules
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
 # In production environment uncomment the next line
