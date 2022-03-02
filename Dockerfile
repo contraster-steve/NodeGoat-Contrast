@@ -5,13 +5,15 @@ RUN apk --update add bash nano g++ gcc make autoconf automake alpine-sdk linux-h
 ENV WORKDIR /usr/src/app/
 WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
-
-RUN npm install @contrast/agent --no-optional
+COPY node-contrast*.tgz $WORKDIR
+RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 RUN npm install --production --no-cache
-COPY contrast_security.yaml $WORKDIR
 
+FROM node:12-alpine
 ENV USER node
-COPY --from=0 /usr/src/app/node_modules node_modules
+ENV WORKDIR /home/$USER/app/dev/
+WORKDIR $WORKDIR
+COPY --from=0 /usr/src/app/dev/node_modules node_modules
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
 # In production environment uncomment the next line
@@ -19,4 +21,3 @@ COPY --chown=node . $WORKDIR
 # Then all further actions including running the containers should be done under non-root user.
 USER $USER
 EXPOSE 4000
-CMD [“node”, “-r”, “@contrast/agent”, “server”]
