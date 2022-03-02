@@ -8,6 +8,7 @@ WORKDIR = /app/nodegoat
 RUN addgroup --system --gid 1001 nodegoat && \
     adduser nodegoat --system --uid 1001 --ingroup nodegoat
 COPY --from=installer --chown=nodegoat /app/nodegoat .
+RUN pwd
 RUN ls -la
 # In production environment uncomment the next line
 #RUN chown -R $USER:$USER /home/$USER && chmod -R g-s,o-rx /home/$USER && chmod -R o-wrx $WORKDIR
