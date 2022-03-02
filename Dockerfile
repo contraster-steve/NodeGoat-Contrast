@@ -4,7 +4,7 @@ WORKDIR $WORKDIR
 COPY package*.json $WORKDIR
 
 RUN npm install --production --no-cache & 
-RUN npm install -g @contrast/agent &
+RUN npm install @contrast/agent &
 RUN pwd
 RUN ls -la
 
