@@ -1,19 +1,12 @@
-FROM node:12-alpine
-ENV WORKDIR /usr/src/app/dev/
-WORKDIR $WORKDIR
-COPY package*.json $WORKDIR
+FROM node:16 as installer
+COPY . /nodegoat
+WORKDIR /nodegoat
+RUN npm install --production --no-cache
+RUN npx contrast-transpile ./index.js
 
-RUN npm cache verify
-RUN npm install --production --no-cache & 
-RUN npm install @contrast/agent &
-
-FROM node:12-alpine
-ENV USER node
-ENV WORKDIR /home/$USER/app/dev/
-WORKDIR $WORKDIR
-RUN pwd
-RUN ls -la
-COPY --from=0 /usr/src/app/dev/node_modules/ node_modules
+FROM node:16-alpine
+WORKDIR /nodegoat
+USER = node
 RUN chown $USER:$USER $WORKDIR
 COPY --chown=node . $WORKDIR
 # In production environment uncomment the next line
@@ -21,3 +14,4 @@ COPY --chown=node . $WORKDIR
 # Then all further actions including running the containers should be done under non-root user.
 USER $USER
 EXPOSE 4000
+CMD ["npm", "start"]
