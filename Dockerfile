@@ -3,6 +3,7 @@ COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN ls -la
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
+RUN cat /app/nodegoat/contrast_security.yaml
 
 FROM node:16-alpine
 WORKDIR /app/nodegoat
