@@ -3,6 +3,7 @@ COPY . /nodegoat
 WORKDIR /nodegoat
 RUN ls -la 
 RUN npm install --production --no-cache
+RUN npm install mongodb
 
 FROM node:16-alpine
 WORKDIR /nodegoat
