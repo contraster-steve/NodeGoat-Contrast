@@ -4,6 +4,7 @@ WORKDIR /app/nodegoat
 RUN ls -la
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
 RUN ls -la /app/nodegoat
+RUN chown nodegoat /app/nodegoat/contrast_security.yaml
 RUN cat /app/nodegoat/contrast_security.yaml
 
 FROM node:16-alpine
