@@ -1,5 +1,4 @@
 FROM node:16-alpine as installer
-RUN apk add --update nodejs-current npm
 COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN ls -la
