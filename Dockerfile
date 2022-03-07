@@ -1,11 +1,5 @@
-FROM ubuntu:20.04 as installer
-ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Chicago"
-RUN apt-get update
-RUN apt install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt install nodejs
-RUN apt install -y netcat
+FROM node:16-alpine as installer
+RUN apk add --update nodejs-current npm
 COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN ls -la
@@ -13,7 +7,7 @@ RUN npm install --production --no-cache && npm install @contrast/agent --no-opti
 RUN ls -la /app/nodegoat
 RUN cat /app/nodegoat/contrast_security.yaml
 
-FROM ubuntu:20.04
+FROM node:16-alpine
 WORKDIR /app/nodegoat
 RUN addgroup --system --gid 1001 nodegoat && \
     adduser nodegoat --system --uid 1001 --ingroup nodegoat
