@@ -1,4 +1,5 @@
 FROM ubuntu:20.04 as installer
+ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Chicago"
 RUN apt-get update
 RUN apt-get -y install nodejs npm 
 COPY . /app/nodegoat
