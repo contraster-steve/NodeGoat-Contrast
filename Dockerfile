@@ -1,6 +1,6 @@
 FROM ubuntu:20.04 as installer
-RUN apk add --update nodejs-current npm
-RUN apk add --update npm
+RUN apt-get update
+RUN apt-get install node-js-current npm 
 COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN ls -la
