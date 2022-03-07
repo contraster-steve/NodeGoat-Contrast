@@ -1,5 +1,6 @@
-FROM node:alpine as installer
+FROM alpine as installer
 RUN apk add --update nodejs-current npm
+RUN apk add --update npm
 COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN ls -la
@@ -7,7 +8,7 @@ RUN npm install --production --no-cache && npm install @contrast/agent --no-opti
 RUN ls -la /app/nodegoat
 RUN cat /app/nodegoat/contrast_security.yaml
 
-FROM node:alpine
+FROM alpine
 WORKDIR /app/nodegoat
 RUN addgroup --system --gid 1001 nodegoat && \
     adduser nodegoat --system --uid 1001 --ingroup nodegoat
