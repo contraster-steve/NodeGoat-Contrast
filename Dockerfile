@@ -1,6 +1,7 @@
 FROM ubuntu:20.04 as installer
 ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Chicago"
 RUN apt-get update
+RUN apt-install curl
 RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-install nodejs
