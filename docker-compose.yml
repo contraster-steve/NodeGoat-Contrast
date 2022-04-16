@@ -2,10 +2,19 @@ version: "3.7"
 
 services:
   nodegoat_dev_web:
+    image: smithst987/nodegoat:latest
+    container_name: nodegoat    
     build: .
     volumes:
       - ./contrast_security.yaml:/app/nodegoat/contrast_security.yaml
     environment:
+      - CONTRAST_CONFIG_PATH=/app/nodegoat/contrast_security.yaml   
+      - CONTRAST__ENABLE=TRUE
+      - CONTRAST__AGENT__NODE__REWRITE_CACHE__ENABLE=true
+      - CONTRAST__AGENT__NODE__REWRITE_CACHE__PATH=.contrast
+      - CONTRAST__APPLICATION__NAME=NodeGoat
+      - CONTRAST__APPLICATION__GROUP=application_control_2
+      - CONTRAST__APPLICATION__METADATA=bU=PS, contact=steve.smith@contrastsecurity.com
       NODE_ENV:
       MONGODB_URI: mongodb://mongo:27017/nodegoat
     container_name: nodegoat-contrast  
