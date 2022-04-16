@@ -8,7 +8,6 @@ services:
     volumes:
       - ./contrast_security.yaml:/app/nodegoat/contrast_security.yaml
     environment:
-      NODE_ENV:
       - CONTRAST_CONFIG_PATH=/app/nodegoat/contrast_security.yaml   
       - CONTRAST__ENABLE=TRUE
       - CONTRAST__AGENT__NODE__REWRITE_CACHE__ENABLE=true
