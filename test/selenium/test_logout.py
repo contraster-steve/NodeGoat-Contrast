@@ -9,6 +9,10 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+options = Options()
+options.headless = True
+driver = webdriver.Chrome(options=options)
+driver.implicitly_wait(3)
 
 class TestLogout():
   def setup_method(self, method):
