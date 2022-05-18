@@ -3,6 +3,7 @@ COPY . /app/nodegoat
 WORKDIR /app/nodegoat
 RUN ls -la
 RUN npm install --production --no-cache && npm install @contrast/agent --no-optional
+RUN npm run db:seed
 
 FROM node:16-alpine
 WORKDIR /app/nodegoat
@@ -14,7 +15,7 @@ RUN chown nodegoat:nodegoat /app/nodegoat/contrast_security.yaml
 #RUN chown -R $USER:$USER /home/$USER && chmod -R g-s,o-rx /home/$USER && chmod -R o-wrx $WORKDIR
 # Then all further actions including running the containers should be done under non-root user.
 USER nodegoat
-RUN npm run db:seed
+
 RUN chmod +x ./startup.sh
 EXPOSE 4000
 CMD ["npm", "start"]
