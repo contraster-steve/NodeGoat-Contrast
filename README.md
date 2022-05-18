@@ -13,7 +13,7 @@ This repo includes the components necessary to instrument contrast Assess/Protec
 Specifically modified:
 
 1. package.json includes @contrast/agent as a dependency (note: you might want to upgrade the version to the latest) and "start": "node -r @contrast/agent server.js -c /app/nodegoat/contrast_security.yaml".
-2. The docker-compose.yml includes the path to the contrast_security.yaml (not included), enables the Node rewrite cache, and sets a few other specific environment variables. I removed the 
+2. The docker-compose.yml includes the path to the contrast_security.yaml (not included), enables the Node rewrite cache, and sets a few other specific environment variables. I removed the CLI rewrite from the Dockerfile because it wasn't reliable - sometimes it worked and sometimes it didn't.
 3. Three other docker-compose YAMLs depending on what "environment" you're wanting to run: Development, QA, or Production.
 
 contrast_security.yaml example:
