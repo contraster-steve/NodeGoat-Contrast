@@ -23,7 +23,7 @@ pipeline {
                 script{
                     echo "Build YAML file."
                     sh 'pwd'
-                    sh 'echo "api:\n  url: https://apptwo.contrastsecurity.com/Contrast\n  api_key: ${api_key}\n  service_key: ${service_key}\n  user_name: ${user_name}\napplication:\n  session_metadata: "buildNumber=${BUILD_NUMBER}, committer=Steve Smith"" >> ./NodeGoat/contrast_security.yaml'
+                    sh 'echo "api:\n  url: https://apptwo.contrastsecurity.com/Contrast\n  api_key: ${api_key}\n  service_key: ${service_key}\n  user_name: ${user_name}\napplication:\n  session_metadata: "buildNumber=${BUILD_NUMBER}, committer=Steve Smith"\n  version: ${JOB_NAME}-${BUILD_NUMBER}" >> ./NodeGoat/contrast_security.yaml'
                     sh 'chmod 755 ./NodeGoat/contrast_security.yaml'
                 }
             }
@@ -45,6 +45,13 @@ pipeline {
             echo "Run Dev here."
             dir('./NodeGoat/') {
                 sh 'docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d'
+                    }
+            echo "Deploy and run on QA server."
+            sh 'sudo scp -i /home/ubuntu/steve.pem -r NodeGoat/* ubuntu@syn.contrast.pw:/home/ubuntu/webapps/NodeGoat/'
+            sh 'ssh -i /home/ubuntu/steve.pem ubuntu@syn.contrast.pw sudo docker-compose -f /home/ubuntu/webapps/NodeGoat/docker-compose.yml -f /home/ubuntu/webapps/NodeGoat/docker-compose.qa.yml up -d' 
+            echo "Deploy and run on Prod server."
+            sh 'sudo scp -i /home/ubuntu/steve.pem -r NodeGoat/* ubuntu@ack.contrast.pw:/home/ubuntu/webapps/NodeGoat'
+            sh 'ssh -i /home/ubuntu/steve.pem ubuntu@ack.contrast.pw sudo docker-compose -f /home/ubuntu/webapps/NodeGoat/docker-compose.yml -f /home/ubuntu/webapps/NodeGoat/docker-compose.prod.yml up -d' 
                 }
             }
         }
