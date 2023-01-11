@@ -1,4 +1,4 @@
-# NodeGoat with Contrast
+# NodeGoat 
 Being lightweight, fast, and scalable, Node.js is becoming a widely adopted platform for developing web applications. This project provides an environment to learn how OWASP Top 10 security risks apply to web applications developed using Node.js and how to effectively address them.
 
 ## WARNING!
@@ -9,24 +9,6 @@ Google Chrome performs filtering for reflected XSS attacks. These attacks will n
 
 ### Contrast Instrumentation 
 This repo includes the components necessary to instrument contrast Assess/Protect with this Node.js application except for the contrast_security.yaml file containing the connection strings.
-
-Specifically modified:
-
-1. package.json includes @contrast/agent as a dependency (note: you might want to upgrade the version to the latest) and "start": "node -r @contrast/agent server.js -c /app/nodegoat/contrast_security.yaml".
-2. The docker-compose.yml includes the path to the contrast_security.yaml (not included), enables the Node rewrite cache, and sets a few other specific environment variables. I removed the CLI rewrite from the Dockerfile because it wasn't reliable - sometimes it worked and sometimes it didn't.
-3. Three other docker-compose YAMLs depending on what "environment" you're wanting to run: Development, QA, or Production.
-
-contrast_security.yaml example:
-
-api:<br>
-&nbsp;&nbsp;url: https://apptwo.contrastsecurity.com/Contrast<br>
-&nbsp;&nbsp;api_key: [REDACTED<br>
-&nbsp;&nbsp;service_key: [REDACTED]<br>
-&nbsp;&nbsp;user_name: [REDACTED]<br>
-application:<br>
-&nbsp;&nbsp;session_metadata: buildNumber=${BUILD_NUMBER}, committer=Steve Smith #buildNumber is inserted via Jenkins Pipeline<br>
-
-Your contrast_security.yaml file needs to be in the root of the web application directory. It then gets copied into the Docker Container.
 
 # Requirements
 
