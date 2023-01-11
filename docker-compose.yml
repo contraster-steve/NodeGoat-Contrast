@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   nodegoat_dev_web:
-    image: nodegoat:latest
+    image: nodegoat_docker:latest
     container_name: nodegoat    
     build: .
     environment:
